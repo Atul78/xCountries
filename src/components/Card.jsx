@@ -16,9 +16,16 @@ const Card = () => {
     }
   };
 
-  useEffect(() => {
-    fetchCountries();
-  }, []);
+useEffect(() => {
+  fetchCountries(); 
+  const t = setTimeout(() => {
+    if (countries.length === 0) {
+      fetchCountries();
+    }
+  }, 500); 
+
+  return () => clearTimeout(t);
+}, []);
 
   return (
     <div className="App">
