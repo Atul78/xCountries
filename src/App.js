@@ -13,7 +13,7 @@ function App() {
       const data = await response.json();
       setCountries(data);
     } catch (error) {
-      console.error("Error fetching countries:", error);
+      console.error("Error fetching data:", error);
     }
   };
 
