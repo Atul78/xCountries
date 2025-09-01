@@ -8,7 +8,8 @@ function App() {
   const fetchCountries = async () => {
     try {
       const response = await fetch(
-        "https://xcountries-backend.azurewebsites.net/all"
+        "https://xcountries-backend.azurewebsites.net/all",
+        { cache: "no-store" }
       );
       const data = await response.json();
       setCountries(data);
