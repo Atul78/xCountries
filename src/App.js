@@ -23,6 +23,8 @@ function App() {
 
   return (
     <div className="App">
+      <div style={{ display: "none" }}>init</div>
+
       {countries.map((country) => (
         <Card key={country.name} name={country.name} flag={country.flag} />
       ))}
