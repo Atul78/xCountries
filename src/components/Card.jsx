@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const Card = () => {
-  const [countries, setCountries] = useState([]); // Original API data
-  const [filteredCountries, setFilteredCountries] = useState([]); // For search filtering
+  const [countries, setCountries] = useState([]); // Original data
+  const [filteredCountries, setFilteredCountries] = useState([]); // For search
   const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch countries from API
@@ -19,9 +19,8 @@ const Card = () => {
 
       const data = await response.json();
       setCountries(data);
-      setFilteredCountries(data); // initially display all
+      setFilteredCountries(data); // initially show all
     } catch (error) {
-      // Cypress test listens to these logs
       console.error("Error fetching data:", error);
       console.log("Error fetching data:", error.message);
     }
@@ -32,6 +31,12 @@ const Card = () => {
     const value = event.target.value;
     setSearchTerm(value);
 
+    if (value.trim() === "") {
+      // If input empty -> show all
+      setFilteredCountries(countries);
+      return;
+    }
+
     const filtered = countries.filter((country) =>
       country.common.toLowerCase().includes(value.toLowerCase())
     );
@@ -39,7 +44,7 @@ const Card = () => {
     setFilteredCountries(filtered);
   };
 
-  // Fetch data on mount + retry if failed
+  // Fetch data on mount + retry if fails
   useEffect(() => {
     fetchCountries();
 
@@ -135,11 +140,8 @@ const Card = () => {
             </div>
           ))
         ) : (
-          searchTerm && (
-            <p style={{ gridColumn: "1/-1", textAlign: "center", color: "#888" }}>
-              No countries found
-            </p>
-          )
+          // Show nothing visible when no match
+          searchTerm && null
         )}
       </div>
     </div>
