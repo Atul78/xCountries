@@ -69,7 +69,9 @@ const Card = () => {
         minHeight: "100vh",
       }}
     >
-      <h1 style={{ color: "#333", marginBottom: "20px" }}>🌍 Country Explorer</h1>
+      <h1 style={{ color: "#333", marginBottom: "20px" }}>
+        🌍 Country Explorer
+      </h1>
 
       {/* Search Input */}
       <input
@@ -101,48 +103,49 @@ const Card = () => {
           marginTop: "30px",
         }}
       >
-        {filteredCountries.length > 0 ? (
-          filteredCountries.map((country) => (
-            <div
-              key={country.common}
-              className="countryCard"
-              style={{
-                backgroundColor: "#fff",
-                border: "1px solid #eaeaea",
-                borderRadius: "10px",
-                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-                textAlign: "center",
-                padding: "15px",
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-5px)";
-                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
-              }}
-            >
-              <img
-                src={country.png}
-                alt={`${country.common} flag`}
+        {filteredCountries.length > 0
+          ? filteredCountries.map((country) => (
+              <div
+                key={country.common}
+                className="countryCard"
                 style={{
-                  width: "100%",
-                  height: "90px",
-                  objectFit: "cover",
-                  borderRadius: "6px",
-                  marginBottom: "10px",
+                  backgroundColor: "#fff",
+                  border: "1px solid #eaeaea",
+                  borderRadius: "10px",
+                  boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                  padding: "15px",
+                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  cursor: "pointer",
                 }}
-              />
-              <h2 style={{ fontSize: "16px", color: "#333" }}>{country.common}</h2>
-            </div>
-          ))
-        ) : (
-          // Show nothing visible when no match
-          searchTerm && <div className="countryCard"></div>
-        )}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 10px rgba(0,0,0,0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+                }}
+              >
+                <img
+                  src={country.png}
+                  alt={`${country.common} flag`}
+                  style={{
+                    width: "100%",
+                    height: "90px",
+                    objectFit: "cover",
+                    borderRadius: "6px",
+                    marginBottom: "10px",
+                  }}
+                />
+                <h2 style={{ fontSize: "16px", color: "#333" }}>
+                  {country.common}
+                </h2>
+              </div>
+            ))
+          : // Show nothing visible when no match
+            null}
       </div>
     </div>
   );
