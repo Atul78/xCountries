@@ -141,7 +141,7 @@ const Card = () => {
           ))
         ) : (
           // Show nothing visible when no match
-          searchTerm && null
+          searchTerm && <div className="countryCard"></div>
         )}
       </div>
     </div>
