@@ -44,7 +44,6 @@ const Card = () => {
     setFilteredCountries(filtered);
   };
 
-  // Fetch data on mount + retry if fails
   useEffect(() => {
     fetchCountries();
 
@@ -144,8 +143,7 @@ const Card = () => {
                 </h2>
               </div>
             ))
-          : // Show nothing visible when no match
-            null}
+          : null}
       </div>
     </div>
   );
